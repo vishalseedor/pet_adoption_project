@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:pet_adoption_project/ApiProvider/RegisterAPI/registerapi.dart';
-import 'package:pet_adoption_project/Models/registermodel.dart';
-import 'package:pet_adoption_project/screens/HomeScreen/homescreen.dart';
 import 'package:pet_adoption_project/screens/LoginScreen/loginscreen.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 
@@ -21,7 +17,7 @@ final _formKey = GlobalKey<FormState>();
 Future<void>registerAdopter(
 
 String firstname,String lastname,String dob,String phone,String email,String password,String address,String gender) async {
-  final url = 'http://campus.sicsglobal.co.in/Project/pet_shop/api/adopter_registration.php';
+  const url = 'http://campus.sicsglobal.co.in/Project/pet_shop/api/adopter_registration.php';
 
   Map<String, String> body = {
   
@@ -93,7 +89,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
       //   leading: IconButton(onPressed: (){}, icon:const Icon(Icons.arrow_back,color: Colors.white,)),
       //  ),
         body: Container(
-         decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/signup.jpg'),fit: BoxFit.cover)),
+         decoration: const BoxDecoration(image: DecorationImage(image: AssetImage('assets/K.png'),fit: BoxFit.cover)),
           child: Center(
             child: SingleChildScrollView(
               child: Form(
@@ -102,6 +98,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                   SizedBox(height: size.height * 0.03),  
                     const Text(
                       'SIGN UP',
                       style: TextStyle(  
@@ -110,17 +107,17 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: size.height * 0.06),  
+                    SizedBox(height: size.height * 0.03),  
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: TextFormField(
-                      
+                       
                         keyboardType: TextInputType.text,
                         controller: firstnamecontroller,
                         decoration: InputDecoration(
+                          
                           hintText: 'First Name',
-                        
-                          hintStyle: const TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.black),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
@@ -129,11 +126,11 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                           fillColor: Colors.white.withOpacity(0.5),
                           prefixIcon: const Icon(
                             IconlyLight.profile,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                         
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         validator: (value) {
                           if(value!.isEmpty){
                             return 'Please enter your first name';
@@ -150,7 +147,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                        controller: lastnamecontroller,
                         decoration: InputDecoration(
                           hintText: 'Last Name',
-                          hintStyle: const TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.black),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
@@ -159,10 +156,10 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                           fillColor: Colors.white.withOpacity(0.5),
                           prefixIcon: const Icon(
                            IconlyLight.profile,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         validator: (value) {
                           if(value!.isEmpty){
                             return 'Please enter your last name';
@@ -179,21 +176,21 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                         controller: datecontroller,
                         decoration: InputDecoration(
                           hintText: 'Date of Birth',
-                          hintStyle: const TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.black),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
                           ),
                           filled: true,
                           fillColor: Colors.white.withOpacity(0.5),
-                          suffixIcon: IconButton(
+                          prefixIcon: IconButton(
                           icon:const Icon(IconlyLight.calendar)  ,
-                            color: Colors.white, onPressed: () { 
+                            color: Colors.black, onPressed: () { 
                               _selectDate(context);
                              },
                           ),
                         ),
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         validator: (value) {
                           if(value!.isEmpty){
                             return 'Please enter your date of birth';
@@ -211,7 +208,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                         controller: phonecontroller,
                         decoration: InputDecoration(
                           hintText: 'Mobile No',
-                          hintStyle: const TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.black),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
@@ -220,10 +217,10 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                           fillColor: Colors.white.withOpacity(0.5),
                           prefixIcon: const Icon(
                             IconlyLight.call,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         validator: (value) {
                           if(value!.isEmpty){
                             return 'Please enter your mobile no';
@@ -240,7 +237,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                         controller: emailcontroller,
                         decoration: InputDecoration(
                           hintText: 'Email',
-                          hintStyle: const TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.black),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
@@ -249,10 +246,10 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                           fillColor: Colors.white.withOpacity(0.5),
                           prefixIcon: const Icon(
                             IconlyLight.message,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         validator: (value) {
                           if(value!.isEmpty){
                             return 'Please enter your email';
@@ -270,7 +267,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                          keyboardType: TextInputType.visiblePassword,
                         decoration: InputDecoration(
                           hintText: 'Password',
-                          hintStyle: const TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.black),
                           border: OutlineInputBorder(
                 
                             borderRadius: BorderRadius.circular(10.0),
@@ -280,9 +277,9 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                           fillColor: Colors.white.withOpacity(0.5),
                           prefixIcon: const Icon(
                            IconlyLight.password,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
-                          suffixIcon: const Icon(Icons.remove_red_eye,color: Colors.white,)
+                          suffixIcon: const Icon(Icons.remove_red_eye,color: Colors.black)
                         ),
                         style: const TextStyle(color: Colors.white),
                         validator: (value) {
@@ -301,7 +298,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                         controller: addresscontroller,
                         decoration: InputDecoration(
                           hintText: 'Address',
-                          hintStyle: const TextStyle(color: Colors.white),
+                          hintStyle: const TextStyle(color: Colors.black),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             borderSide: BorderSide.none,
@@ -310,10 +307,10 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                           fillColor: Colors.white.withOpacity(0.5),
                           prefixIcon: const Icon(
                             IconlyLight.addUser,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
-                        style: const TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.black),
                         validator: (value) {
                           if(value!.isEmpty){
                             return 'Please enter your address';
@@ -327,7 +324,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                     SizedBox(height: size.height * 0.03),
                      Padding(padding: EdgeInsets.symmetric(horizontal: 20),
                      child: DropdownButtonFormField<String>(
-                       
+                    
                        validator: (value) {
                           if(value!.isEmpty){
                             return 'Please select your gender';
@@ -337,7 +334,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                         
                         borderRadius: BorderRadius.circular(10.0),borderSide: BorderSide.none
                       ),
-                      prefixIcon: Icon(IconlyLight.profile,color: Colors.white,),
+                      prefixIcon: Icon(IconlyLight.profile,color: Colors.black,),
                       fillColor: Colors.white.withOpacity(0.5),filled: true),
                   value: selectedGender,
                 
@@ -387,7 +384,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                  );
 
 
-                    Navigator.of(context).push(
+                 await   Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => LoginPage(),
                       ),
@@ -404,7 +401,7 @@ String firstname,String lastname,String dob,String phone,String email,String pas
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
                           side: const BorderSide(color: Colors.transparent),
-                        ),
+                        ), 
                         padding: const EdgeInsets.symmetric(
                             vertical: 15.0, horizontal: 50.0),
                       ),

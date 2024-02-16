@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:pet_adoption_project/ApiProvider/AllPetProvider/petmodel.dart';
-import 'package:provider/provider.dart';
 import 'package:http/http.dart' as https;
 
 class PetProvider with ChangeNotifier {
-  final List<PetModel> _pet = [];
   bool _isLoading = false;
   bool get islOading {
     return _isLoading;
@@ -40,9 +37,9 @@ class PetProvider with ChangeNotifier {
       _isLoading = true;
       // var headers = {'Cookie': 'ci_session=c7lis868nec6nl8r1lb5el72q8n26upv'};
       var response = await https.get(
-          Uri.parse(
-              "http://campus.sicsglobal.co.in/Project/pet_shop/api/viewallpets.php"),
-          );
+        Uri.parse(
+            "http://campus.sicsglobal.co.in/Project/pet_shop/api/viewallpets.php"),
+      );
 
       print(
           "http://campus.sicsglobal.co.in/Project/pet_shop/api/viewallpets.php");
@@ -54,20 +51,24 @@ class PetProvider with ChangeNotifier {
         _pets = [];
         var extractedData = json.decode(response.body);
         //  print(json.decode(response.body) + 'printed extrated data');
-
+        final List<dynamic> petDetails = extractedData['petDetails'];
+        for (var i = 0; i < petDetails.length; i++) {
           _pets.add(
             PetModel(
-              petId: extractedData['petid'].toString(),
-              petName: extractedData['name'].toString(),
-              petBreed: extractedData['breed'].toString(),
-              petspeciesName: extractedData['species'].toString(),
-              petImage: extractedData['photo'].toString(),
-              petAge: extractedData['age'].toString(),
-              petSex: extractedData['sex'].toString(),
+              petId: petDetails[i]['petid'].toString(),
+              petName: petDetails[i]['name'].toString(),
+              petBreed: petDetails[i]['breed'].toString(),
+              petspeciesName: petDetails[i]['species'].toString(),
+              petImage: petDetails[i]['photo'].toString(),
+              petAge: petDetails[i]['age'].toString(),
+              petSex: petDetails[i]['sex'].toString(),
+              petWeight: petDetails[i]['weight'].toString()
             ),
           );
-        
+        }
+        ;
 
+        print('pet details' + _pets.toString());
         _isLoading = false;
         print('cateogory products loading completed --->' + 'loading data');
         notifyListeners();
@@ -78,12 +79,12 @@ class PetProvider with ChangeNotifier {
     } on HttpException catch (e) {
       // ignore: prefer_interpolation_to_compose_strings
       print('error in product prod -->>' + e.toString());
-      print('Pet Data is one by one loaded the pet' +
-          e.toString());
+      print('Pet Data is one by one loaded the pet' + e.toString());
       _isLoading = false;
 
       _isSelect = false;
       notifyListeners();
     }
   }
+ 
 }

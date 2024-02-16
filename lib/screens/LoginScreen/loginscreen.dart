@@ -1,10 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:pet_adoption_project/Colors/colors.dart';
 import 'package:pet_adoption_project/screens/HomeScreen/homescreen.dart';
 import 'package:pet_adoption_project/screens/RegistrationScreen/registerationscreen.dart';
 import 'package:http/http.dart' as http;
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,6 +14,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage>{
+  
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailcontroller=TextEditingController();
   TextEditingController passwordcontroller=TextEditingController(); 
@@ -21,7 +22,7 @@ class _LoginPageState extends State<LoginPage>{
   void loginAdopter(String email,String password
 
 ) async {
-  final url = 'http://campus.sicsglobal.co.in/Project/pet_shop/api/login.php';
+  const url = 'http://campus.sicsglobal.co.in/Project/pet_shop/api/login.php';
 
   Map<String, String> body = {
   'email':email,
@@ -40,13 +41,13 @@ class _LoginPageState extends State<LoginPage>{
     if (response.statusCode == 200) {
       if(jsonData['status']==true){
           ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.green,
-          content: Text('Login Successful!',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-          duration: Duration(seconds: 4),
+         SnackBar(
+          backgroundColor: purpleColor,
+          content: const Text('Login Successful!',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+          duration: const Duration(seconds: 4),
         ),
       );
-      Navigator.push(context,MaterialPageRoute(builder:(context)=>Example()));
+      Navigator.push(context,MaterialPageRoute(builder:(context)=>const PetBottomNavigation()));
       print(body);
       print("Response body${response.body}");
     
@@ -54,6 +55,14 @@ class _LoginPageState extends State<LoginPage>{
       }
       else{
         jsonData['status']==false;
+         // ignore: use_build_context_synchronously
+         ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+          backgroundColor: purpleColor,
+          content: const Text('Invalid email and password',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+          duration: const Duration(seconds: 4),
+        ),
+      );
          print('Error: ${response.statusCode}');
       }
      
@@ -65,7 +74,6 @@ class _LoginPageState extends State<LoginPage>{
     print('Error: $error');
   }
 }
-
 
   bool _isChecked = false;
   @override
@@ -117,6 +125,10 @@ class _LoginPageState extends State<LoginPage>{
                             if(value!.isEmpty){
                               return 'Please enter your email';
                             }
+                            //  if (!RegExp(r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$').hasMatch(value)) {
+                            //  return 'Please enter a valid email address';
+                            //    }
+                            // return "";
                           },
                       ),
                     ),
@@ -145,6 +157,10 @@ class _LoginPageState extends State<LoginPage>{
                             if(value!.isEmpty){
                               return 'Please enter your password';
                             }
+                            //   if (value.length < 10) {
+                            // return 'Password must be at least 10 characters';
+                            //  }
+                            // return "";
                           },
                       ),
                     ),
@@ -195,11 +211,7 @@ class _LoginPageState extends State<LoginPage>{
                  );
 
 
-                  //  await Navigator.of(context).push(
-                  //     MaterialPageRoute(
-                  //       builder: (_) => LoginPage(),
-                  //     ))
-                      ;}
+                      }
                        
                       },
                       style: ElevatedButton.styleFrom(
@@ -226,77 +238,9 @@ class _LoginPageState extends State<LoginPage>{
                         const Text('Don t have a an account',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
                         TextButton(onPressed: ()async{
                           Navigator.push(context,MaterialPageRoute(builder:(context)=>const RegisterPage()));
-                        }, child:Text('Register',style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold))),
+                        }, child:const Text('Register',style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold))),
                       ],
                     )
-                    // SizedBox(height: 30),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                    //   child: ElevatedButton(
-                    //                       onPressed: () {
-                    //                         Navigator.push(context,MaterialPageRoute(builder:(context)=>const RegisterPage()));
-                    //                        // _onSavePressed();
-                    //                       },
-                    //                       style: ElevatedButton.styleFrom(
-                    //                         backgroundColor: Colors.transparent,
-                    //                         shape: RoundedRectangleBorder(
-                    //   borderRadius: BorderRadius.circular(18.0),
-                    //   side: const BorderSide(color: Colors.transparent),
-                    //                         ),
-                    //                         padding: const EdgeInsets.symmetric(
-                    //     vertical: 15.0, horizontal: 50.0),
-                    //                       ),
-                    //                       child: Row(
-                    //                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //                         children: [
-                    //    Image.asset('assets/google.png',height: 30,width: 30,),
-                    //    Text(
-                    //     'Continue with Google',
-                    //     style: TextStyle(
-                    //       color: Colors.white,
-                    //       fontSize: 14.0,
-                    //       fontWeight: FontWeight.bold
-                    //     ),
-                    //   ),
-                    //                         ],
-                    //                       ),
-                    //                     ),
-                    // ),
-                    // SizedBox(height: 12.0,),
-                    //                     Padding(
-                    //                       padding: const EdgeInsets.symmetric(horizontal: 20),
-                    //                       child: ElevatedButton(
-                    //                       onPressed: () {
-                    //                         Navigator.push(context,MaterialPageRoute(builder:(context)=>Example()));
-                    //                        // _onSavePressed();
-                    //                       },
-                    //                       style: ElevatedButton.styleFrom(
-                    //                         backgroundColor: Colors.transparent,
-                    //                         shape: RoundedRectangleBorder(
-                    //                                         borderRadius: BorderRadius.circular(18.0),
-                    //                                         side: const BorderSide(color: Colors.transparent),
-                    //                         ),
-                    //                         padding: const EdgeInsets.symmetric(
-                    //                                           vertical: 15.0, horizontal: 50.0),
-                    //                       ),
-                    //                       child:  Row(
-                    //                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    //                         children: [
-                    //                                         Image.asset(
-                    //                                           'assets/fb.png',height: 28,width: 20,
-                    //                                         ),
-                    //                                         Text(
-                    //                                           'Continue with Facebook',
-                    //                                           style: TextStyle(
-                    //                                             color: Colors.white,
-                    //                                             fontSize: 14.0,
-                    //                                             fontWeight: FontWeight.bold
-                    //                                           ),
-                    //                                         ),
-                    //                         ],
-                    //                       ),
-                    //                                                           ),
-                    //                     )
                   ],
                 ),
               ),

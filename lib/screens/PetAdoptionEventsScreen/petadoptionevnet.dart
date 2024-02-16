@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pet_adoption_project/Colors/colors.dart';
+import 'package:pet_adoption_project/screens/PetAdoptionEventsScreen/viewadoptioneventscreen.dart';
 
 class PetAdoptionEvntScreen extends StatefulWidget {
   const PetAdoptionEvntScreen({super.key});
@@ -34,9 +35,7 @@ class _PetAdoptionEvntScreenState extends State<PetAdoptionEvntScreen> {
             Expanded(
               child: Container(
                 child: TabBarView(children: [
-                  Container(
-                    child: Center(child: Text("Home Body")),
-                  ),
+                  ViewAdoptionPage(),
                   Container(
                     child: Center(child: Text("Articles Body")),
                   ),

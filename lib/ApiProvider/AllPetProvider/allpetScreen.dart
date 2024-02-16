@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:pet_adoption_project/ApiProvider/AllPetProvider/errorscreen.dart';
 import 'package:pet_adoption_project/ApiProvider/AllPetProvider/loadingscreen.dart';
-import 'package:pet_adoption_project/ApiProvider/AllPetProvider/petWidget.dart';
 import 'package:pet_adoption_project/ApiProvider/AllPetProvider/petprovider.dart';
+
 import 'package:provider/provider.dart';
+
+import 'errorscreen.dart';
 
 class AllPetScreen extends StatefulWidget {
   static const routeName = 'all_pet_screen';
-  
-  const AllPetScreen({Key? key,})
-      : super(key: key);
+
+  const AllPetScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<AllPetScreen> createState() => _AllPetScreenState();
@@ -21,7 +23,8 @@ class _AllPetScreenState extends State<AllPetScreen> {
     super.initState();
     // Provider.of<PetProvider>(context, listen: false)
     //     .get(context: context, categoryproduct: widget.cateproduct);
-    Provider.of<PetProvider>(context,listen: false).getAllPetsData(context: context);
+    Provider.of<PetProvider>(context, listen: false)
+        .getAllPetsData(context: context);
   }
 
   @override
@@ -35,7 +38,7 @@ class _AllPetScreenState extends State<AllPetScreen> {
           toolbarHeight: 80,
           elevation: 0,
           backgroundColor: Colors.grey[200],
-          title: const Row(
+          title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
@@ -69,10 +72,9 @@ class _AllPetScreenState extends State<AllPetScreen> {
                             itemCount: pet.pets.length,
                             itemBuilder: (ctx, index) {
                               print(pet.pets.length.toString());
-                              return ChangeNotifierProvider.value(
-                                value: pet.pets[index],
-                                child: const AllPetWidget() 
-                              );
+                              // return ChangeNotifierProvider.value(
+                              //     value: pet.pets[index],
+                              //     child: const AllPetWidget());
                             }),
       ),
     );

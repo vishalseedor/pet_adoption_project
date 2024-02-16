@@ -1,34 +1,28 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:pet_adoption_project/ApiProvider/AllPetProvider/allpetScreen.dart';
 import 'package:pet_adoption_project/Colors/colors.dart';
 import 'package:pet_adoption_project/ProfileScreen/profilescreen.dart';
 import 'package:pet_adoption_project/screens/AdoptionRequestScreen/adoptionrequestscreen.dart';
 import 'package:pet_adoption_project/screens/FavouriteScreen/favouritescreen.dart';
-import 'package:pet_adoption_project/screens/ViewPetsScreen/first_page.dart';
 import 'package:pet_adoption_project/screens/ViewPetsScreen/petnewviewscreen.dart';
 
+class PetBottomNavigation extends StatefulWidget {
+  const PetBottomNavigation({super.key});
 
-class Example extends StatefulWidget {
   @override
-  _ExampleState createState() => _ExampleState();
+  State<PetBottomNavigation> createState() => _PetBottomNavigationState();
 }
 
-class _ExampleState extends State<Example> {
-  int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static  List<Widget> _widgetOptions = <Widget>[
-    //Firstpage(),
-   // PetListScreen(),
-   PetNewViewScreen(),
-   //PetViewScreen(),
-   PetFavouritePage(),
-   MyAdoptionRequestPage(),
-   ProfilePage()
+class _PetBottomNavigationState extends State<PetBottomNavigation> {
+    int _selectedIndex = 0;
+  static  final List<Widget> _widgetOptions = <Widget>[
+   const PetNewViewScreen(),
+   const PetFavouritePage(),
+   const MyAdoptionRequestPage(),
+   const ProfilePage()
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
